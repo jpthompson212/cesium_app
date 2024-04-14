@@ -4,6 +4,8 @@ import {
     Math,
     Terrain,
     createOsmBuildingsAsync,
+    Cesium3DTileset,
+    Ion
   } from "cesium";
   import "cesium/Build/Cesium/Widgets/widgets.css";
   import "./css/main.css";
@@ -18,14 +20,34 @@ import {
   });
   
   // Add Cesium OSM Buildings, a global 3D buildings layer.
+  const denverAerometrexData = await Cesium3DTileset.fromIonAssetId(354307)
+  viewer.scene.primitives.add(denverAerometrexData);
+  //await viewer.zoomTo(denverAerometrexData)
+
   const osmBuildingsTileset = await createOsmBuildingsAsync();
-  viewer.scene.primitives.add(osmBuildingsTileset);
+  //viewer.scene.primitives.add(osmBuildingsTileset)
   
+  const melbournePointCloud = await Cesium3DTileset.fromIonAssetId(43978)
+  viewer.scene.primitives.add(melbournePointCloud)
+  melbournePointCloud.pointCloudShading.maximumAttenuation = undefined
+  melbournePointCloud.pointCloudShading.baseResolution = undefined
+  melbournePointCloud.pointCloudShading.geometricErrorScale = 2.0
+  melbournePointCloud.pointCloudShading.attenuation = true
+  await viewer.zoomTo(melbournePointCloud)
+
+
+  const apolloPointCloud = await Cesium3DTileset.fromIonAssetId(2537258)
+  viewer.scene.primitives.add(apolloPointCloud)
+  apolloPointCloud.pointCloudShading.maximumAttenuation = undefined
+  apolloPointCloud.pointCloudShading.baseResolution = undefined
+  apolloPointCloud.pointCloudShading.geometricErrorScale = 2.0
+  apolloPointCloud.pointCloudShading.attenuation = true
+  await viewer.zoomTo(apolloPointCloud)
   // Fly the camera to San Francisco at the given longitude, latitude, and height.
-  viewer.camera.flyTo({
-    destination: Cartesian3.fromDegrees(-122.4175, 37.655, 400),
-    orientation: {
-      heading: Math.toRadians(0.0),
-      pitch: Math.toRadians(-15.0),
-    },
-  });
+  // viewer.camera.flyTo({
+  //   destination: Cartesian3.fromDegrees(-122.4175, 37.655, 400),
+  //   orientation: {
+  //     heading: Math.toRadians(0.0),
+  //     pitch: Math.toRadians(-15.0),
+  //   },
+  // });
