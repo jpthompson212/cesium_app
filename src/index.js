@@ -129,7 +129,7 @@ import {
             radii: new Cartesian3(100.0, 100.0, 100.0),
             material: Color.RED
           },
-          description: element[1] + "_" + element[2] + "<br>" + "lat: " + element[5] + "<br>" + "lon: " + element[6] + "<br>" + "alt: " + element[7]
+          description: element[1] + "_" + element[2] + "<br>" + "lon: " + element[5] + "<br>" + "lat: " + element[6] + "<br>" + "alt: " + element[7]
         })}
     });
 
